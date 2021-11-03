@@ -1,8 +1,11 @@
 package com.yquery.gdsccontacts.activities
 
+import android.content.DialogInterface
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.yquery.gdsccontacts.database.ContactEntity
 import com.yquery.gdsccontacts.databinding.ActivityAddEditBinding
 import com.yquery.gdsccontacts.viewmodels.ContactViewModel
@@ -28,6 +31,8 @@ class AddEditActivity : AppCompatActivity() {
             binding.nameInput.setText(name)
             binding.numberInput.setText(number)
 
+        } else {
+            binding.deleteButton.visibility = View.GONE
         }
 
         binding.saveButton.setOnClickListener {
@@ -52,6 +57,22 @@ class AddEditActivity : AppCompatActivity() {
                 )
                 finish()
             }
+        }
+
+        binding.deleteButton.setOnClickListener {
+
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Delete Contact")
+                .setMessage("Are you sure ?")
+                .setPositiveButton("Yes") { dialog, which ->
+                    viewModel.delete(ContactEntity(id, name, number))
+                    finish()
+                }
+                .setNegativeButton("No") { dialog, which ->
+                    dialog.cancel()
+                }
+                .show()
+
         }
 
     }

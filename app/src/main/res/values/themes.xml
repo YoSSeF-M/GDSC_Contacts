@@ -16,5 +16,15 @@
 
         <item name="colorSurface">@color/main_color</item>
         <item name="toolbarStyle">@style/Widget.Material3.Toolbar.Surface</item>
+
+        <item name="materialAlertDialogTheme">@style/Dialog</item>
+
+    </style>
+
+    <style name="Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+
+        <item name="colorSurface">@color/white</item>
+        <item name="colorPrimary">@color/main_color</item>
+
     </style>
 </resources>
