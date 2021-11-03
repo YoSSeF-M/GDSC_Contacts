@@ -1,19 +1,19 @@
-package com.yquery.gdsccontacts
+package com.yquery.gdsccontacts.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.yquery.gdsccontacts.adapters.ContactsAdapter
-import com.yquery.gdsccontacts.database.ContactEntity
 import com.yquery.gdsccontacts.databinding.ActivityMainBinding
 import com.yquery.gdsccontacts.viewmodels.ContactViewModel
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var binding : ActivityMainBinding
+    lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ContactViewModel
-    lateinit var adapter : ContactsAdapter
+    lateinit var adapter: ContactsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +34,10 @@ class MainActivity : AppCompatActivity() {
             adapter.setData(it)
 
         })
+
+        binding.addActivityFab.setOnClickListener {
+            startActivity(Intent(this, AddEditActivity::class.java))
+        }
 
     }
 }

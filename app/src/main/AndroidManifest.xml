@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GDSCContacts">
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.AddEditActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

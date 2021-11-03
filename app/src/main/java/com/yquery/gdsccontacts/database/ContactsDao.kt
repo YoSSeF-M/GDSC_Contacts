@@ -11,13 +11,15 @@ interface ContactsDao {
     fun getAll(): LiveData<MutableList<ContactEntity>>
 
     @Insert
-    suspend fun insert(qrcode: ContactEntity)
+    suspend fun insert(contact: ContactEntity)
 
     @Query("DELETE FROM contact_entity")
     suspend fun deleteAll()
 
     @Delete
-    suspend fun delete(qrcode: ContactEntity)
+    suspend fun delete(contact: ContactEntity)
 
+    @Update
+    suspend fun update(contact: ContactEntity)
 
 }

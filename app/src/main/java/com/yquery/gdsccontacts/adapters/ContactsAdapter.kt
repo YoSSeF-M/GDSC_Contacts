@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.yquery.gdsccontacts.R
+import com.yquery.gdsccontacts.activities.AddEditActivity
 import com.yquery.gdsccontacts.database.ContactEntity
 
 class ContactsAdapter(context: Context): RecyclerView.Adapter<ContactsAdapter.MyViewHolder>() {
@@ -39,6 +40,19 @@ class ContactsAdapter(context: Context): RecyclerView.Adapter<ContactsAdapter.My
             intent.data = Uri.parse("tel:${currentItem.contactNumber}")
 
             ctx.startActivity(intent)
+        }
+
+        holder.itemView.setOnLongClickListener {
+
+            val intent = Intent(ctx, AddEditActivity::class.java)
+
+            intent.putExtra("id", currentItem.contactID)
+            intent.putExtra("name", currentItem.contactName)
+            intent.putExtra("number", currentItem.contactNumber)
+
+            ctx.startActivity(intent)
+
+            true
         }
 
     }

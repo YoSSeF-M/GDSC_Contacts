@@ -22,9 +22,9 @@ class ContactViewModel(application: Application) : AndroidViewModel(application)
         getAllContacts = repository.getAllContacts
     }
 
-    fun insertContact(qrcode : ContactEntity){
+    fun insertContact(contact : ContactEntity){
         viewModelScope.launch(Dispatchers.IO) {
-            repository.insertContact(qrcode)
+            repository.insertContact(contact)
         }
     }
 
@@ -34,9 +34,15 @@ class ContactViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
-    fun delete(qrcodeDelete: ContactEntity){
+    fun delete(contact: ContactEntity){
         viewModelScope.launch(Dispatchers.IO){
-            repository.delete(qrcodeDelete)
+            repository.delete(contact)
+        }
+    }
+
+    fun update(contact: ContactEntity){
+        viewModelScope.launch {
+            repository.update(contact)
         }
     }
 
