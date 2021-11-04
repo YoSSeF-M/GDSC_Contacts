@@ -6,6 +6,7 @@ import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.yquery.gdsccontacts.R
@@ -21,6 +22,7 @@ class ContactsAdapter(context: Context): RecyclerView.Adapter<ContactsAdapter.My
 
         var contactNameTextview : TextView = itemView.findViewById(R.id.contact_name_textview)
         var contactNumberTextview : TextView = itemView.findViewById(R.id.contact_number_textview)
+        var callButton : ImageView = itemView.findViewById(R.id.call_button)
 
     }
 
@@ -36,14 +38,6 @@ class ContactsAdapter(context: Context): RecyclerView.Adapter<ContactsAdapter.My
         holder.contactNumberTextview.text = currentItem.contactNumber
 
         holder.itemView.setOnClickListener{
-            val intent = Intent(Intent.ACTION_DIAL)
-            intent.data = Uri.parse("tel:${currentItem.contactNumber}")
-
-            ctx.startActivity(intent)
-        }
-
-        holder.itemView.setOnLongClickListener {
-
             val intent = Intent(ctx, AddEditActivity::class.java)
 
             intent.putExtra("id", currentItem.contactID)
@@ -51,8 +45,13 @@ class ContactsAdapter(context: Context): RecyclerView.Adapter<ContactsAdapter.My
             intent.putExtra("number", currentItem.contactNumber)
 
             ctx.startActivity(intent)
+        }
 
-            true
+        holder.callButton.setOnClickListener {
+            val intent = Intent(Intent.ACTION_DIAL)
+            intent.data = Uri.parse("tel:${currentItem.contactNumber}")
+
+            ctx.startActivity(intent)
         }
 
     }

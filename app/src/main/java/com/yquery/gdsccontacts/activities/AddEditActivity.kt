@@ -36,26 +36,28 @@ class AddEditActivity : AppCompatActivity() {
         }
 
         binding.saveButton.setOnClickListener {
-            if (((name) != null) && (number != null)) {
+            if(binding.nameInput.text.toString().isNotBlank() && binding.numberInput.text.toString().isNotBlank()) {
+                if (((name) != null) && (number != null)) {
 
-                viewModel.update(
-                    ContactEntity(
-                        id,
-                        binding.nameInput.text.toString(),
-                        binding.numberInput.text.toString()
+                    viewModel.update(
+                        ContactEntity(
+                            id,
+                            binding.nameInput.text.toString(),
+                            binding.numberInput.text.toString()
+                        )
                     )
-                )
-                finish()
+                    finish()
 
-            } else {
-                viewModel.insertContact(
-                    ContactEntity(
-                        0,
-                        binding.nameInput.text.toString(),
-                        binding.numberInput.text.toString()
+                } else {
+                    viewModel.insertContact(
+                        ContactEntity(
+                            0,
+                            binding.nameInput.text.toString(),
+                            binding.numberInput.text.toString()
+                        )
                     )
-                )
-                finish()
+                    finish()
+                }
             }
         }
 
